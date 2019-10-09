@@ -40,14 +40,15 @@ namespace EmployeeManagement.Controllers
         [ActionFilter]
         public ViewResult Details(int id)
         {
-            var employee = this.employeeRepository.GetEmployee(id);
-            var department = this.employeeRepository.GetDepartment(employee.IdDepartment);
+            var employee = this.employeeRepository.GetEmployee(id);            
 
             if (employee == null)
             {
                 Response.StatusCode = 404;
                 return View("EmployeeNotFound", id);
             }
+
+            var department = this.employeeRepository.GetDepartment(employee.IdDepartment);
 
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
             {
@@ -67,7 +68,7 @@ namespace EmployeeManagement.Controllers
             EmployeeCreateViewModel employeeCreateViewModel = new EmployeeCreateViewModel();
             using (AppDbContext appDbContext = new AppDbContext(this.Options))
             {
-                employeeCreateViewModel.departmentsSource = appDbContext.Departments.ToList().Select(x => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem { Text = x.Name, Value = x.IdDepartment.ToString() }).ToList();
+                // employeeCreateViewModel.departmentsSource = appDbContext.Departments.ToList().Select(x => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem { Text = x.Name, Value = x.IdDepartment.ToString() }).ToList();
                 employeeCreateViewModel.Name = "Default";
             };
 
@@ -111,6 +112,11 @@ namespace EmployeeManagement.Controllers
                 Email = newEmployee.Email,
                 IdDepartment = newEmployee.IdDepartment,
                 ExistingPhotoPath = newEmployee.PhotoPath
+            };
+
+            using (AppDbContext appDbContext = new AppDbContext(this.Options))
+            {
+                employeeEditViewModel.departmentsSource = appDbContext.Departments.ToList().Select(x => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem { Text = x.Name, Value = x.IdDepartment.ToString() }).ToList();
             };
 
             return View(employeeEditViewModel);
