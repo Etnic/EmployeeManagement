@@ -10,6 +10,8 @@ namespace EmployeeManagement.ViewModels
     {
         public Employee Employee { get; set; }
 
+        public Department Department { get; set; }
+
         public string PageTitle { get; set; }
     }
 }

@@ -176,13 +176,13 @@ namespace EmployeeManagement.Migrations
                     name = table.Column<string>(maxLength: 255, nullable: false),
                     email = table.Column<string>(maxLength: 255, nullable: false),
                     IdDepartment = table.Column<int>(nullable: false),
-                    photopath = table.Column<string>(maxLength: 255, nullable: false)
+                    photopath = table.Column<string>(maxLength: 255, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_employee", x => x.Id);
                     table.ForeignKey(
-                        name: "employee_id_department_fkey",
+                        name: "FK_Employee_id_department",
                         column: x => x.IdDepartment,
                         principalTable: "department",
                         principalColumn: "id_department",

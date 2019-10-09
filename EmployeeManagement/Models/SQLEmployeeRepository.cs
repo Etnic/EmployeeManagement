@@ -43,6 +43,11 @@ namespace EmployeeManagement.Models
             return this.appDbContext.Employees.Find(id);
         }
 
+        public Department GetDepartment(int id)
+        {
+            return this.appDbContext.Departments.Find(id);
+        }
+
         public Employee Update(Employee employee)
         {
             var employeeChanged = this.appDbContext.Employees.Attach(employee);

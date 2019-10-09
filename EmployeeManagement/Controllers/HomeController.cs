@@ -41,6 +41,7 @@ namespace EmployeeManagement.Controllers
         public ViewResult Details(int id)
         {
             var employee = this.employeeRepository.GetEmployee(id);
+            var department = this.employeeRepository.GetDepartment(employee.IdDepartment);
 
             if (employee == null)
             {
@@ -51,6 +52,7 @@ namespace EmployeeManagement.Controllers
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
             {
                 Employee = employee,
+                Department = department,
                 PageTitle = "Detail title"
             };
 
@@ -97,9 +99,10 @@ namespace EmployeeManagement.Controllers
         }
 
         [HttpGet]
-        public ViewResult Edit(Employee employee)
+        [ActionFilter]
+        public ViewResult Edit(int id)
         {
-            var newEmployee = this.employeeRepository.GetEmployee(employee.Id);
+            var newEmployee = this.employeeRepository.GetEmployee(id);
 
             EmployeeEditViewModel employeeEditViewModel = new EmployeeEditViewModel()
             {

@@ -10,6 +10,7 @@ namespace EmployeeManagement.Models
      public interface IEmployeeRepository
     {
         Employee GetEmployee(int id);
+        Department GetDepartment(int id);
         IEnumerable<Employee> GetAllEmployees();
         Employee Add(Employee employeeCreateViewModel);
         Employee Update(Employee employee);

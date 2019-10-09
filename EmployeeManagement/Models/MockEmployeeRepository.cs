@@ -49,5 +49,10 @@ namespace EmployeeManagement.Models
         {
             this.employees.Remove(this.employees.First(x => x.Id == id));
         }
+
+        public Department GetDepartment(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

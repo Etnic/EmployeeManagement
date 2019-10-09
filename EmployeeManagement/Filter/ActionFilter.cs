@@ -16,10 +16,8 @@ namespace EmployeeManagement.Filter
             EditRoleViewModel editRoleViewModel = new EditRoleViewModel();
 
             var queryString = context.HttpContext.Request.QueryString.Value;
-            
-            var x = queryString.Substring(queryString.IndexOf('=') + 1);
-            // editRoleViewModel.TestFilter = queryString.TrimStart(MyChar); ;
 
+            editRoleViewModel.TestFilter = queryString.Substring(queryString.IndexOf('=') + 1);
         }
 
         public void OnActionExecuted(ActionExecutedContext context)
