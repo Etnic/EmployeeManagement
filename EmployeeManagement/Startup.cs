@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using EmployeeManagement.Filter;
@@ -76,23 +77,26 @@ namespace EmployeeManagement
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error/");
-                app.UseStatusCodePagesWithReExecute("/Error/{0}");
-            }
+            app.UseLoggingMiddleware();
 
-            app.UseStaticFiles();
-            //app.UseMvcWithDefaultRoute();
-            app.UseAuthentication();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
-            });
+
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+            //else
+            //{
+            //    app.UseExceptionHandler("/Error/");
+            //    app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            //}
+
+            //app.UseStaticFiles();
+            ////app.UseMvcWithDefaultRoute();
+            //app.UseAuthentication();
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
+            //});
 
         }
     }

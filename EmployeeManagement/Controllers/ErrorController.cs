@@ -31,7 +31,7 @@ namespace EmployeeManagement.Controllers
                     //ViewBag.Path = statusCodeResult.OriginalPath;
                     //ViewBag.QS = statusCodeResult.OriginalQueryString;
 
-                    this.logger.LogWarning($"War1 : exception path {statusCodeResult.OriginalPath} and qs {statusCodeResult.OriginalQueryString}");
+                    this.logger.LogWarning($"Warning1 : exception path {statusCodeResult.OriginalPath} and qs {statusCodeResult.OriginalQueryString}");
 
                     break;
             }
@@ -49,7 +49,7 @@ namespace EmployeeManagement.Controllers
             //ViewBag.ExceptionMessage = exceptionDetails.Error.Message;
             //ViewBag.StackTrace = exceptionDetails.Error.StackTrace;
 
-            logger.LogError($"Err1 : exception path {exceptionDetails.Path} throw error {exceptionDetails.Error}");
+            logger.LogError($"Error1 : exception path {exceptionDetails.Path} throw error {exceptionDetails.Error}");
 
             return View("Error");
 
