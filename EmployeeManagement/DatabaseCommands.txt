@@ -1,0 +1,5 @@
+﻿add-migration "NameOfMigration"
+
+update-database
+
+remove migration => add-migration "name of last good known migration"
