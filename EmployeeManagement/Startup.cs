@@ -77,26 +77,25 @@ namespace EmployeeManagement
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseLoggingMiddleware();
+            //app.UseLoggingMiddleware();
 
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Error/");
+                app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            }
 
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
-            //else
-            //{
-            //    app.UseExceptionHandler("/Error/");
-            //    app.UseStatusCodePagesWithReExecute("/Error/{0}");
-            //}
-
-            //app.UseStaticFiles();
-            ////app.UseMvcWithDefaultRoute();
-            //app.UseAuthentication();
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
-            //});
+            app.UseStaticFiles();
+            //app.UseMvcWithDefaultRoute();
+            app.UseAuthentication();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
+            });
 
         }
     }
